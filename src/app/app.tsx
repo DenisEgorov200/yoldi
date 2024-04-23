@@ -1,9 +1,9 @@
-import { Header } from '@widgets/header'
+import { SignIn } from '@pages/auth/sign-in'
 
 export const App = () => {
   return (
     <>
-      <Header />
+      <SignIn />
     </>
   )
 }
