@@ -14,6 +14,23 @@ export default {
         },
         red: 'var(--red)',
       },
+      fontSize: {
+        title: ['1.875rem', {
+          lineHeight: '140%'
+        }],
+        subtitle: ['1.125rem', {
+          lineHeight: '140%'
+        }],
+        paragraph: ['1rem', {
+          lineHeight: '160%'
+        }],
+        button: ['1rem', {
+          lineHeight: '160%'
+        }],
+        'paragraph-mini': ['0.75rem', {
+          lineHeight: '160%'
+        }],
+      }
     },
   },
   plugins: [],
