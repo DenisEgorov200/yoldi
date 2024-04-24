@@ -1,4 +1,5 @@
 import { Button } from '@shared/ui/button'
+import { Input } from '@shared/ui/input'
 
 export const SignIn = () => {
   return (
@@ -8,7 +9,7 @@ export const SignIn = () => {
           <div>
             <img src="/icons/logo.svg" alt="yoldi" />
           </div>
-          <h1 className="max-w-56">
+          <h1 className="max-w-60">
             Разрабатываем и запускаем сложные веб проекты
           </h1>
         </div>
@@ -23,22 +24,12 @@ export const SignIn = () => {
             Вход в Yoldi Agency
           </label>
           <div className="flex flex-col gap-3.5 px-1">
-            <div className="group flex items-center gap-2.5 rounded border border-gray-200 px-5 py-3 focus:border-gray-400">
-              <img src="/icons/email.svg" alt="email" />
-              <input
-                type="text"
-                placeholder="E-mail"
-                className="outline-none"
-              />
-            </div>
-            <div className="group flex items-center gap-2.5 rounded border border-gray-200 px-5 py-3 focus:border-gray-400">
-              <img src="/icons/email.svg" alt="email" />
-              <input
-                type="text"
-                placeholder="E-mail"
-                className="outline-none"
-              />
-            </div>
+            <Input type="email" placeholder="E-mail" icon="/icons/email.svg" />
+            <Input
+              type="password"
+              placeholder="Пароль"
+              icon="/icons/lock.svg"
+            />
           </div>
           <Button label="Войти" intent="disabled" />
         </form>
