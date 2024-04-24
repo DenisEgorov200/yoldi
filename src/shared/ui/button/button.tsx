@@ -1,12 +1,11 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import { ButtonHTMLAttributes, ReactNode } from 'react'
 
-const button = cva(['font-semibold', 'border', 'rounded'], {
+const button = cva(['border', 'rounded'], {
   variants: {
     intent: {
       primary: [
         'rounded',
-        'border',
         'border-gray-200',
         'transition-colors',
         'hover:bg-gray-200',
