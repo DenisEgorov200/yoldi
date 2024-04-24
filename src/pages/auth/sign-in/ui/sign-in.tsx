@@ -6,10 +6,10 @@ export const SignIn = () => {
     <div className="flex h-dvh w-dvw flex-col">
       <header className="flex items-center justify-between border-b border-gray-200 px-5 py-3.5">
         <div className="flex items-center gap-5">
-          <div>
+          <a href="#">
             <img src="/icons/logo.svg" alt="yoldi" />
-          </div>
-          <h1 className="max-w-60">
+          </a>
+          <h1 className="max-w-60 max-sm:hidden">
             Разрабатываем и запускаем сложные веб проекты
           </h1>
         </div>
@@ -18,7 +18,7 @@ export const SignIn = () => {
       <main className="flex flex-1 items-center justify-center bg-gray-100">
         <form
           action=""
-          className="flex flex-col gap-3.5 rounded border border-gray-200 bg-white p-7"
+          className="flex flex-col gap-3.5 rounded border border-gray-200 bg-white p-7 max-sm:h-full max-sm:w-full"
         >
           <label htmlFor="" className="text-title font-medium">
             Вход в Yoldi Agency
