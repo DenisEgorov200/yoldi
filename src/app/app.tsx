@@ -1,11 +1,11 @@
-import { SignIn } from '@pages/auth/sign-in'
-import { SignUp } from '@pages/auth/sign-up'
+import { Pages } from '@pages/index'
+import { router } from '@shared/config/routes'
+import { RouterProvider } from 'atomic-router-react'
 
 export const App = () => {
   return (
-    <>
-      <SignIn />
-      {/* <SignUp /> */}
-    </>
+    <RouterProvider router={router}>
+      <Pages />
+    </RouterProvider>
   )
 }

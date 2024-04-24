@@ -1,4 +1,7 @@
 import { createHistoryRouter, createRoute } from 'atomic-router'
+import { sample } from 'effector'
+import { appStarted } from './init'
+import { createBrowserHistory } from 'history'
 
 export const routes = {
   auth: {
@@ -32,4 +35,10 @@ export const mappedRoutes = [
 
 export const router = createHistoryRouter({
   routes: mappedRoutes,
+})
+
+sample({
+  clock: appStarted,
+  fn: () => createBrowserHistory(),
+  target: router.setHistory,
 })
