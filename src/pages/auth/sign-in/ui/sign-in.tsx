@@ -1,3 +1,5 @@
+import { Button } from '@shared/ui/button'
+
 export const SignIn = () => {
   return (
     <div className="flex h-dvh w-dvw flex-col">
@@ -10,9 +12,7 @@ export const SignIn = () => {
             Разрабатываем и запускаем сложные веб проекты
           </h1>
         </div>
-        <button className="text-button rounded border border-gray-200 px-8 py-1.5 font-medium transition-colors hover:bg-gray-200">
-          Войти
-        </button>
+        <Button label="Войти" />
       </header>
       <main className="flex flex-1 items-center justify-center bg-gray-100">
         <form
@@ -22,15 +22,25 @@ export const SignIn = () => {
           <label htmlFor="" className="text-title font-medium">
             Вход в Yoldi Agency
           </label>
-          <div className="group flex items-center gap-2.5 rounded border border-gray-200 px-5 py-3 focus:border-gray-400">
-            <img src="/icons/email.svg" alt="email" />
-            <input type="text" placeholder="E-mail" className="outline-none" />
+          <div className="flex flex-col gap-3.5 px-1">
+            <div className="group flex items-center gap-2.5 rounded border border-gray-200 px-5 py-3 focus:border-gray-400">
+              <img src="/icons/email.svg" alt="email" />
+              <input
+                type="text"
+                placeholder="E-mail"
+                className="outline-none"
+              />
+            </div>
+            <div className="group flex items-center gap-2.5 rounded border border-gray-200 px-5 py-3 focus:border-gray-400">
+              <img src="/icons/email.svg" alt="email" />
+              <input
+                type="text"
+                placeholder="E-mail"
+                className="outline-none"
+              />
+            </div>
           </div>
-          <div className="group flex items-center gap-2.5 rounded border border-gray-200 px-5 py-3 focus:border-gray-400">
-            <img src="/icons/email.svg" alt="email" />
-            <input type="text" placeholder="E-mail" className="outline-none" />
-          </div>
-          <button>Войти</button>
+          <Button label="Войти" intent="disabled" />
         </form>
       </main>
       <footer className="flex w-full items-center justify-center py-6">
