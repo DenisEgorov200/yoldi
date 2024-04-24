@@ -1,7 +1,7 @@
 import { Button } from '@shared/ui/button'
 import { Input } from '@shared/ui/input'
 
-export const SignIn = () => {
+export const SignUp = () => {
   return (
     <div className="flex h-dvh w-dvw flex-col">
       <header className="flex items-center justify-between border-b border-gray-200 px-5 py-3.5">
@@ -24,6 +24,7 @@ export const SignIn = () => {
             Вход в Yoldi Agency
           </label>
           <div className="flex flex-col gap-3.5 px-1 max-sm:p-0">
+            <Input type="text" placeholder="Имя" icon="/icons/user.svg" />
             <Input type="email" placeholder="E-mail" icon="/icons/email.svg" />
             <Input
               type="password"
@@ -31,14 +32,14 @@ export const SignIn = () => {
               icon="/icons/lock.svg"
             />
           </div>
-          <Button label="Войти" intent="disabled" />
+          <Button label="Создать аккаунт" intent="disabled" />
         </form>
       </main>
       <footer className="flex w-full items-center justify-center py-6">
         <p className="text-gray-400">
-          Еще нет аккаунта?{' '}
+          Уже есть аккаунт?{' '}
           <a href="#" className="font-medium text-black">
-            Зарегистрироваться
+            Войти
           </a>
         </p>
       </footer>
