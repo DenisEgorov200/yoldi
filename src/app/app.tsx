@@ -4,8 +4,8 @@ import { SignUp } from '@pages/auth/sign-up'
 export const App = () => {
   return (
     <>
-      {/* <SignIn /> */}
-      <SignUp />
+      <SignIn />
+      {/* <SignUp /> */}
     </>
   )
 }
