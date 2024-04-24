@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+*, html, body {
+  font-family: Inter, sans-serif;
+}
+
 @layer base {
   :root {
     --gray-100: #F3F3F3;
@@ -10,5 +14,41 @@
     --gray-400: #838383;
 
     --red: #F00000;
+  }
+
+  @font-face {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/Inter/static/Inter-Regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/Inter/static/Inter-Medium.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/Inter/static/Inter-SemiBold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/Inter/static/Inter-Bold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url('/fonts/Inter/static/Inter-ExtraBold.ttf') format('truetype');
   }
 }
