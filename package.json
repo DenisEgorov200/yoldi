@@ -24,6 +24,8 @@
     "autoprefixer": "^10.4.19",
     "class-variance-authority": "^0.7.0",
     "effector": "^23.2.1",
+    "effector-react": "^23.2.0",
+    "effector-storage": "^7.1.0",
     "eslint": "^8.57.0",
     "eslint-kit": "^10.28.0",
     "eslint-plugin-react-refresh": "^0.4.6",

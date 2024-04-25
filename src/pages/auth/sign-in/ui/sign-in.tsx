@@ -1,7 +1,13 @@
 import { Button } from '@shared/ui/button'
 import { Input } from '@shared/ui/input'
+import { useUnit } from 'effector-react'
+import { signInFx } from '../model'
+import { Link } from 'atomic-router-react'
+import { routes } from '@shared/config/routes'
 
 export const SignIn = () => {
+  const [SignIn, loading] = useUnit([signInFx, signInFx.pending])
+
   return (
     <div className="flex h-dvh w-dvw flex-col">
       <header className="flex items-center justify-between border-b border-gray-200 px-5 py-3.5">
@@ -37,9 +43,9 @@ export const SignIn = () => {
       <footer className="flex w-full items-center justify-center py-6">
         <p className="text-gray-400">
           Еще нет аккаунта?{' '}
-          <a href="#" className="font-medium text-black">
+          <Link to={routes.auth.signUp} className="font-medium text-black">
             Зарегистрироваться
-          </a>
+          </Link>
         </p>
       </footer>
     </div>
