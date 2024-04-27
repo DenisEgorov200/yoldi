@@ -1,12 +1,12 @@
+import { signInWithEmailMutation } from '@shared/api/rest/auth'
+import { routes } from '@shared/config/routes'
 import { Button } from '@shared/ui/button'
 import { Input } from '@shared/ui/input'
-import { useUnit } from 'effector-react'
-import { signInFx } from '../model'
 import { Link } from 'atomic-router-react'
-import { routes } from '@shared/config/routes'
+import { useUnit } from 'effector-react'
 
 export const SignIn = () => {
-  const [SignIn, loading] = useUnit([signInFx, signInFx.pending])
+  const [SignIn] = useUnit([signInWithEmailMutation.start])
 
   return (
     <div className="flex h-dvh w-dvw flex-col">
@@ -37,7 +37,7 @@ export const SignIn = () => {
               icon="/icons/lock.svg"
             />
           </div>
-          <Button label="Войти" intent="disabled" />
+          <Button label="Войти" onClick={SignIn} />
         </form>
       </main>
       <footer className="flex w-full items-center justify-center py-6">

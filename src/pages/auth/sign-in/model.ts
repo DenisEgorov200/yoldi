@@ -1,20 +1,18 @@
-import { api } from '@shared/api'
+import { signInWithEmailMutation } from '@shared/api/rest/auth'
 import { tokenRecieved } from '@shared/auth'
 import { routes } from '@shared/config/routes'
 import { redirect } from 'atomic-router'
-import { attach, sample } from 'effector'
+import { sample } from 'effector'
 
 export const currentRoute = routes.auth.signIn
 
-export const signInFx = attach({ effect: api.auth.signInFx })
-
 sample({
-  clock: signInFx.doneData,
-  fn: (clk) => clk.accessToken,
+  clock: signInWithEmailMutation.finished.success,
+  fn: ({ result }) => result.accessToken,
   target: tokenRecieved,
 })
 
 redirect({
-  clock: signInFx.doneData,
+  clock: signInWithEmailMutation.finished.success,
   route: routes.private.accounts,
 })
