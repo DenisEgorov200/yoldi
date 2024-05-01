@@ -4,9 +4,13 @@ import { Button } from '@shared/ui/button'
 import { Input } from '@shared/ui/input'
 import { Link } from 'atomic-router-react'
 import { useUnit } from 'effector-react'
+import { $email, $password, emailChanged, passwordChanged } from '../model'
 
 export const SignIn = () => {
-  const [SignIn] = useUnit([signInWithEmailMutation.start])
+  const { start: SignIn, pending } = useUnit(signInWithEmailMutation)
+
+  const [email, password] = useUnit([$email, $password])
+  const [handleEmail, handlePassword] = useUnit([emailChanged, passwordChanged])
 
   return (
     <div className="flex h-dvh w-dvw flex-col">
@@ -23,21 +27,35 @@ export const SignIn = () => {
       </header>
       <main className="flex flex-1 items-center justify-center bg-gray-100">
         <form
-          action=""
+          action="sign-in"
+          onSubmit={(event) => {
+            event.preventDefault()
+            SignIn({ email, password })
+          }}
           className="flex flex-col gap-3.5 rounded border border-gray-200 bg-white p-7 max-sm:h-full max-sm:w-full"
         >
-          <label htmlFor="" className="text-title font-medium">
+          <label htmlFor="sign-in" className="text-title font-medium">
             Вход в Yoldi Agency
           </label>
           <div className="flex flex-col gap-3.5 px-1 max-sm:p-0">
-            <Input type="email" placeholder="E-mail" icon="/icons/email.svg" />
             <Input
+              name="email"
+              type="email"
+              placeholder="E-mail"
+              disabled={pending}
+              onChange={() => handleEmail}
+              icon="/icons/email.svg"
+            />
+            <Input
+              name="pasword"
               type="password"
               placeholder="Пароль"
+              disabled={pending}
+              onChange={() => handlePassword}
               icon="/icons/lock.svg"
             />
           </div>
-          <Button label="Войти" onClick={SignIn} />
+          <Button type="submit" label="Войти" loading={pending} />
         </form>
       </main>
       <footer className="flex w-full items-center justify-center py-6">

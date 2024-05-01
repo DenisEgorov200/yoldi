@@ -8,18 +8,18 @@ interface Body {
 }
 
 interface Response {
-  accessToken: string
+  value: string
   user: { email: string; id: number }
 }
 
 export const signInWithEmailMutation = createMutation({
-  effect: createEffect<Body, Response, Error>(async ({ email, password }) => {
+  effect: createEffect<Body, Response, Error>(async (json: Body) => {
     const response = await fetch(`${SITE_URL}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify(json),
     })
 
     return response.json()

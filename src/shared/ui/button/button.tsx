@@ -31,12 +31,25 @@ interface Props
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof button> {
   label: ReactNode
+  loading?: boolean
 }
 
-export const Button = ({ label, className, intent, size, ...props }: Props) => {
+export const Button = ({
+  label,
+  loading,
+  disabled,
+  className,
+  intent,
+  size,
+  ...props
+}: Props) => {
   return (
-    <button className={button({ intent, size, className })} {...props}>
-      {label}
+    <button
+      className={button({ intent, size, className })}
+      disabled={loading ?? disabled}
+      {...props}
+    >
+      {loading ? 'Loading...' : label}
     </button>
   )
 }
