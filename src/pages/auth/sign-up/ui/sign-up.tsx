@@ -1,7 +1,17 @@
+import { signUpWithEmailMutation } from '@shared/api/rest/auth'
 import { Button } from '@shared/ui/button'
 import { Input } from '@shared/ui/input'
+import { useUnit } from 'effector-react'
+import { $email, $password, emailChanged, passwordChanged } from '../model'
+import { Link } from 'atomic-router-react'
+import { routes } from '@shared/config/routes'
 
 export const SignUp = () => {
+  const { start: signUp, pending } = useUnit(signUpWithEmailMutation)
+
+  const [email, password] = useUnit([$email, $password])
+  const [handleEmail, handlePassword] = useUnit([emailChanged, passwordChanged])
+
   return (
     <div className="flex h-dvh w-dvw flex-col">
       <header className="flex items-center justify-between border-b border-gray-200 px-5 py-3.5">
@@ -38,9 +48,9 @@ export const SignUp = () => {
       <footer className="flex w-full items-center justify-center py-6">
         <p className="text-gray-400">
           Уже есть аккаунт?{' '}
-          <a href="#" className="font-medium text-black">
+          <Link to={routes.auth.signIn} className="font-medium text-black">
             Войти
-          </a>
+          </Link>
         </p>
       </footer>
     </div>
