@@ -4,13 +4,24 @@ import { Button } from '@shared/ui/button'
 import { Input } from '@shared/ui/input'
 import { Link } from 'atomic-router-react'
 import { useUnit } from 'effector-react'
-import { $email, $password, emailChanged, passwordChanged } from '../model'
+import {
+  $email,
+  $name,
+  $password,
+  emailChanged,
+  nameChanged,
+  passwordChanged,
+} from '../model'
 
 export const SignUp = () => {
   const { start: signUp, pending } = useUnit(signUpWithEmailMutation)
 
-  const [email, password] = useUnit([$email, $password])
-  const [handleEmail, handlePassword] = useUnit([emailChanged, passwordChanged])
+  const [name, email, password] = useUnit([$name, $email, $password])
+  const [handleName, handleEmail, handlePassword] = useUnit([
+    nameChanged,
+    emailChanged,
+    passwordChanged,
+  ])
 
   return (
     <div className="flex h-dvh w-dvw flex-col">
@@ -30,19 +41,34 @@ export const SignUp = () => {
           action="sign-up"
           onSubmit={(event) => {
             event.preventDefault()
-            signUp({ email, password })
+            signUp({ name, email, password })
           }}
           className="flex flex-col gap-3.5 rounded border border-gray-200 bg-white p-7 max-sm:h-full max-sm:w-full"
         >
-          <label htmlFor="" className="text-title font-medium">
-            Вход в Yoldi Agency
-          </label>
+          <h2 className="text-title font-medium">Вход в Yoldi Agency</h2>
           <div className="flex flex-col gap-3.5 px-1 max-sm:p-0">
-            <Input type="text" placeholder="Имя" icon="/icons/user.svg" />
-            <Input type="email" placeholder="E-mail" icon="/icons/email.svg" />
             <Input
+              name="name"
+              type="text"
+              placeholder="Имя"
+              disabled={pending}
+              onValue={handleName}
+              icon="/icons/user.svg"
+            />
+            <Input
+              name="email"
+              type="email"
+              placeholder="E-mail"
+              disabled={pending}
+              onValue={handleEmail}
+              icon="/icons/email.svg"
+            />
+            <Input
+              name="password"
               type="password"
               placeholder="Пароль"
+              disabled={pending}
+              onValue={handlePassword}
               icon="/icons/lock.svg"
             />
           </div>

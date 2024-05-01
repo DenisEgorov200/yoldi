@@ -7,6 +7,10 @@ interface Body {
   password: string
 }
 
+interface SignUpBody extends Body {
+  name: string
+}
+
 interface Response {
   value: string
   user: { email: string; id: number }
@@ -27,7 +31,7 @@ export const signInWithEmailMutation = createMutation({
 })
 
 export const signUpWithEmailMutation = createMutation({
-  effect: createEffect<Body, Response, Error>(async (json: Body) => {
+  effect: createEffect<SignUpBody, Response, Error>(async (json: Body) => {
     const response = await fetch(`${SITE_URL}/auth/sign-up`, {
       method: 'POST',
       headers: {
