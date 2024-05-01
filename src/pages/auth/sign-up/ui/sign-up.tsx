@@ -1,10 +1,10 @@
 import { signUpWithEmailMutation } from '@shared/api/rest/auth'
+import { routes } from '@shared/config/routes'
 import { Button } from '@shared/ui/button'
 import { Input } from '@shared/ui/input'
+import { Link } from 'atomic-router-react'
 import { useUnit } from 'effector-react'
 import { $email, $password, emailChanged, passwordChanged } from '../model'
-import { Link } from 'atomic-router-react'
-import { routes } from '@shared/config/routes'
 
 export const SignUp = () => {
   const { start: signUp, pending } = useUnit(signUpWithEmailMutation)
@@ -27,7 +27,11 @@ export const SignUp = () => {
       </header>
       <main className="flex flex-1 items-center justify-center bg-gray-100">
         <form
-          action=""
+          action="sign-up"
+          onSubmit={(event) => {
+            event.preventDefault()
+            signUp({ email, password })
+          }}
           className="flex flex-col gap-3.5 rounded border border-gray-200 bg-white p-7 max-sm:h-full max-sm:w-full"
         >
           <label htmlFor="" className="text-title font-medium">
@@ -42,7 +46,7 @@ export const SignUp = () => {
               icon="/icons/lock.svg"
             />
           </div>
-          <Button label="Создать аккаунт" intent="disabled" />
+          <Button type="submit" label="Создать аккаунт" loading={pending} />
         </form>
       </main>
       <footer className="flex w-full items-center justify-center py-6">
