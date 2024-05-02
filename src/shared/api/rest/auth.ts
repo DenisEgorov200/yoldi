@@ -43,3 +43,17 @@ export const signUpWithEmailMutation = createMutation({
     return response.json()
   }),
 })
+
+export const getMeMutation = createMutation({
+  effect: createEffect<SignUpBody, Response, Error>(async (json: Body) => {
+    const response = await fetch(`${SITE_URL}/auth/profile`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(json),
+    })
+
+    return response.json()
+  }),
+})

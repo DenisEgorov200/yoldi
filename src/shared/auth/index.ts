@@ -9,7 +9,7 @@ export const tokenExpired = createEvent()
 
 $token.on(tokenRecieved, (_, token) => token).reset(tokenExpired)
 
-export const isAuth = $token.map((token) => Boolean(token))
+export const $isAuth = $token.map((token) => Boolean(token))
 
 persist({
   store: $token,
