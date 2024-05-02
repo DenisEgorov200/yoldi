@@ -26,7 +26,7 @@ export const LayoutBase = ({ children }: Props) => {
           </div>
         </div>
       </header>
-      <main>{children}</main>
+      <main className="container mx-auto px-2.5">{children}</main>
     </div>
   )
 }
