@@ -22,14 +22,6 @@ export const LayoutBase = ({ children }: Props) => {
         <Button label="Войти" />
       </header>
       <main>{children}</main>
-      <footer className="flex w-full items-center justify-center py-6">
-        <p className="text-gray-400">
-          Еще нет аккаунта?{' '}
-          <Link to={routes.auth.signUp} className="font-medium text-black">
-            Зарегистрироваться
-          </Link>
-        </p>
-      </footer>
     </div>
   )
 }
