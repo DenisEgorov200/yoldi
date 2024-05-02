@@ -1,8 +1,8 @@
+import { LayoutAuthn } from '@layouts/authn'
 import { signInWithEmailMutation } from '@shared/api/rest/auth'
 import { Button } from '@shared/ui/button'
 import { Input } from '@shared/ui/input'
 import { useUnit } from 'effector-react'
-import { LayoutAuthn } from 'src/layouts/authn'
 import { $email, $password, emailChanged, passwordChanged } from '../model'
 
 export const SignIn = () => {
