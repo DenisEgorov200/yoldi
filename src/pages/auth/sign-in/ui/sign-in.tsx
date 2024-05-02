@@ -1,4 +1,3 @@
-import { LayoutAuthn } from '@layouts/authn'
 import { signInWithEmailMutation } from '@shared/api/rest/auth'
 import { Button } from '@shared/ui/button'
 import { Input } from '@shared/ui/input'
@@ -12,7 +11,7 @@ export const SignIn = () => {
   const [handleEmail, handlePassword] = useUnit([emailChanged, passwordChanged])
 
   return (
-    <LayoutAuthn>
+    <>
       <form
         action="sign-in"
         onSubmit={(event) => {
@@ -42,6 +41,6 @@ export const SignIn = () => {
         </div>
         <Button type="submit" label="Войти" loading={pending} />
       </form>
-    </LayoutAuthn>
+    </>
   )
 }

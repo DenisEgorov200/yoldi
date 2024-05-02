@@ -23,7 +23,7 @@ export const SignUp = () => {
   ])
 
   return (
-    <LayoutAuthn>
+    <>
       <form
         action="sign-up"
         onSubmit={(event) => {
@@ -61,6 +61,6 @@ export const SignUp = () => {
         </div>
         <Button type="submit" label="Создать аккаунт" loading={pending} />
       </form>
-    </LayoutAuthn>
+    </>
   )
 }
