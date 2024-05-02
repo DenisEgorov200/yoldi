@@ -6,9 +6,23 @@ interface Account {
   name: string
   email: string
   slug: string
-  image: null
-  cover: null
+  image: Image
+  cover: Cover
   description: string
+}
+
+interface Image {
+  id: string
+  url: string
+  width: string
+  height: string
+}
+
+interface Cover {
+  id: string
+  url: string
+  width: string
+  height: string
 }
 
 export const accountsQuery = createQuery({

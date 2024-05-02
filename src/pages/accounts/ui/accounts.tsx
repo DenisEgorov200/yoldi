@@ -14,9 +14,15 @@ export const Accounts = () => {
             className="flex items-center justify-between border-b border-gray-200 py-2.5"
           >
             <div className="flex items-center gap-5">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-200">
-                <img src="./images/avatar.png" alt="avatar" />
-              </div>
+              {account.image?.url ? (
+                <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-gray-200">
+                  <img src={account.image.url} alt="avatar" />
+                </div>
+              ) : (
+                <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-gray-200 bg-gray-100 text-subtitle">
+                  {account.name[0].toUpperCase()}
+                </div>
+              )}
               <h2>{account.name}</h2>
             </div>
             <a href={`mailto:${account.email}`} className="text-gray-400">
