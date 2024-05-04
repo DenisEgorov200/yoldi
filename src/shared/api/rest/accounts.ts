@@ -32,3 +32,11 @@ export const accountsQuery = createQuery({
     return response.json()
   }),
 })
+
+export const currentAccountQuery = createQuery({
+  effect: createEffect<string, Account, Error>(async (slug) => {
+    const response = await fetch(`${SITE_URL}/user/${slug}`)
+
+    return response.json()
+  }),
+})
