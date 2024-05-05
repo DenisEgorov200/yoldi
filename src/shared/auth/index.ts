@@ -3,7 +3,7 @@ import { redirect } from 'atomic-router'
 import { createEvent, createStore } from 'effector'
 import { persist } from 'effector-storage/local'
 
-const $token = createStore('')
+export const $token = createStore('')
 export const tokenRecieved = createEvent<string>()
 export const tokenExpired = createEvent()
 

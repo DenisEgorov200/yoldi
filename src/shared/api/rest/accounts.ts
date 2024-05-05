@@ -35,7 +35,11 @@ export const accountsQuery = createQuery({
 
 export const currentAccountQuery = createQuery({
   effect: createEffect<string, Account, Error>(async (slug) => {
-    const response = await fetch(`${SITE_URL}/user/${slug}`)
+    const response = await fetch(`${SITE_URL}/profile`, {
+      headers: {
+        'X-API-KEY': slug,
+      },
+    })
 
     return response.json()
   }),
