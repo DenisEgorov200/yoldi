@@ -18,6 +18,7 @@ const button = cva(['border', 'rounded'], {
       ],
     },
     size: {
+      small: ['text-button', 'font-medium', 'py-1.5', 'px-5'],
       medium: ['text-button', 'font-medium', 'py-3', 'px-8'],
     },
   },
