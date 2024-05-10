@@ -23,8 +23,8 @@ export const LayoutBase = ({ children }: Props) => {
           </h1>
         </div>
         <Link
-          params={{ accountId }}
           to={routes.private.account}
+          params={{ accountId }}
           className="flex items-center gap-5"
         >
           <p className="text-paragraph">Владислав</p>
