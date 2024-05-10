@@ -1,9 +1,10 @@
+import { tokenExpired } from '@shared/auth'
 import { Button } from '@shared/ui/button'
 import { useUnit } from 'effector-react'
 import { $account } from '../model'
 
 export const Account = () => {
-  const [account] = useUnit([$account])
+  const [account, handleTokenExpired] = useUnit([$account, tokenExpired])
 
   return (
     <>
@@ -37,7 +38,7 @@ export const Account = () => {
               {account?.description}
             </p>
             <div className={`${account?.description && 'mt-14'}`}>
-              <Button label="Выйти" size="small" />
+              <Button label="Выйти" size="small" onClick={handleTokenExpired} />
             </div>
           </div>
         </>
