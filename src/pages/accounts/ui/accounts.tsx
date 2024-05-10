@@ -14,7 +14,7 @@ export const Accounts = () => {
             className="flex items-center gap-5 border-b border-gray-200 py-2.5"
           >
             <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-gray-200 bg-gray-100 text-subtitle uppercase">
-              {account.image?.url ? (
+              {account?.image?.url ? (
                 <img src={account.image.url} alt="avatar" />
               ) : (
                 account.name[0]
