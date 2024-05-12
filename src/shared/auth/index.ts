@@ -1,6 +1,8 @@
+import { currentAccountQuery } from '@shared/api/rest/accounts'
+import { appStarted } from '@shared/config/init'
 import { routes } from '@shared/config/routes'
 import { redirect } from 'atomic-router'
-import { createEvent, createStore } from 'effector'
+import { createEvent, createStore, sample } from 'effector'
 import { persist } from 'effector-storage/local'
 
 export const $token = createStore('')
@@ -21,4 +23,11 @@ persist({
 redirect({
   clock: tokenExpired,
   route: routes.auth.signIn,
+})
+
+sample({
+  clock: appStarted,
+  source: $token,
+  filter: $isAuth,
+  target: currentAccountQuery,
 })

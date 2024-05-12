@@ -15,14 +15,14 @@ export const LayoutBase = ({ children }: Props) => {
   return (
     <div className="flex h-dvh w-dvw flex-col">
       <header className="flex items-center justify-between border-b border-gray-200 px-5 py-3.5">
-        <div className="flex items-center gap-5">
-          <a href="#">
+        <Link to={routes.private.accounts} className="flex items-center gap-5">
+          <div>
             <img src="/icons/logo.svg" alt="yoldi" />
-          </a>
+          </div>
           <h1 className="max-w-60 max-sm:hidden">
             Разрабатываем и запускаем сложные веб проекты
           </h1>
-        </div>
+        </Link>
         <Link
           to={routes.private.account}
           params={{ accountId }}
