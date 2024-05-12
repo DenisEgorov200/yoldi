@@ -1,8 +1,8 @@
 import { chainAuthorized } from '@shared/viewer'
 import { currentRoute } from './model'
-import { Account } from './ui/account'
+import { Profile } from './ui/profile.tsx'
 
-export const AccountRoute = {
-  view: Account,
+export const ProfileRoute = {
+  view: Profile,
   route: chainAuthorized(currentRoute),
 }

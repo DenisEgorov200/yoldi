@@ -7,10 +7,10 @@ import { Modal } from '@shared/ui/modal'
 import { Textarea } from '@shared/ui/textarea'
 import { useUnit } from 'effector-react'
 import { useRef, useState } from 'react'
-import { $account } from '../model'
+import { $profile } from '../model'
 
-export const Account = () => {
-  const [account, handleTokenExpired] = useUnit([$account, tokenExpired])
+export const Profile = () => {
+  const [profile, handleTokenExpired] = useUnit([$profile, tokenExpired])
 
   const modalRef = useRef<HTMLDivElement>(null)
   const [isOpenModal, setIsOpenModal] = useState(false)
@@ -19,7 +19,7 @@ export const Account = () => {
 
   return (
     <>
-      {account && (
+      {profile && (
         <>
           <div className="group absolute right-0 flex h-[20dvh] w-dvw items-center justify-center bg-gray-100">
             <Button
@@ -30,16 +30,16 @@ export const Account = () => {
           </div>
           <div className="relative z-10 mt-[15dvh] flex flex-col justify-start">
             <div className="mb-8 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-gray-200 bg-gray-100 text-subtitle uppercase">
-              {account.image?.url ? (
-                <img src={account.image.url} alt={account.name} />
+              {profile.image?.url ? (
+                <img src={profile.image.url} alt={profile.name} />
               ) : (
-                account.name[0]
+                profile.name[0]
               )}
             </div>
             <div className="mb-7 flex justify-between">
               <div className="flex flex-col gap-2.5 align-top">
-                <h1 className="text-title font-medium">{account?.name}</h1>
-                <p className="text-paragraph text-gray-400">{account?.email}</p>
+                <h1 className="text-title font-medium">{profile?.name}</h1>
+                <p className="text-paragraph text-gray-400">{profile?.email}</p>
               </div>
               <div>
                 <Button
@@ -50,9 +50,9 @@ export const Account = () => {
               </div>
             </div>
             <p className="max-w-[600px] text-paragraph">
-              {account?.description}
+              {profile?.description}
             </p>
-            <div className={`${account?.description && 'mt-14'}`}>
+            <div className={`${profile?.description && 'mt-14'}`}>
               <Button label="Выйти" size="small" onClick={handleTokenExpired} />
             </div>
           </div>
@@ -78,7 +78,11 @@ export const Account = () => {
               >
                 Адрес профиля
               </label>
-              <AddresInput type="text" onValue={() => console.log('hello')} />
+              <AddresInput
+                type="text"
+                onValue={() => console.log('hello')}
+                label="example.com/profile/"
+              />
             </div>
             <div className="flex flex-col gap-1">
               <label

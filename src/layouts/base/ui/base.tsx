@@ -1,4 +1,4 @@
-import { $account } from '@pages/account/model'
+import { $profile } from '@pages/profile/model'
 import { $token } from '@shared/auth'
 import { routes } from '@shared/config/routes'
 import { Link } from 'atomic-router-react'
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const LayoutBase = ({ children }: Props) => {
-  const [account, accountId] = useUnit([$account, $token])
+  const [profile, profileId] = useUnit([$profile, $token])
 
   return (
     <div className="flex h-dvh w-dvw flex-col">
@@ -24,16 +24,16 @@ export const LayoutBase = ({ children }: Props) => {
           </h1>
         </Link>
         <Link
-          to={routes.private.account}
-          params={{ accountId }}
+          to={routes.private.profile}
+          params={{ profileId }}
           className="flex items-center gap-5"
         >
-          <p className="text-paragraph">{account?.name}</p>
+          <p className="text-paragraph">{profile?.name}</p>
           <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-gray-200 bg-gray-100 text-subtitle uppercase">
-            {account?.image?.url ? (
-              <img src={account.image.url} alt={account.name} />
+            {profile?.image?.url ? (
+              <img src={profile.image.url} alt={profile.name} />
             ) : (
-              account?.name[0]
+              profile?.name[0]
             )}
           </div>
         </Link>

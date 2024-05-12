@@ -1,4 +1,4 @@
-import { currentAccountQuery } from '@shared/api/rest/accounts'
+import { currentProfileQuery } from '@shared/api/rest/accounts'
 import { appStarted } from '@shared/config/init'
 import { routes } from '@shared/config/routes'
 import { redirect } from 'atomic-router'
@@ -29,5 +29,5 @@ sample({
   clock: appStarted,
   source: $token,
   filter: $isAuth,
-  target: currentAccountQuery,
+  target: currentProfileQuery,
 })

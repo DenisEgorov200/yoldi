@@ -33,7 +33,7 @@ export const accountsQuery = createQuery({
   }),
 })
 
-export const currentAccountQuery = createEffect<string, Account, Error>(
+export const currentProfileQuery = createEffect<string, Account, Error>(
   async (slug) => {
     const response = await fetch(`${SITE_URL}/profile`, {
       headers: {

@@ -10,7 +10,7 @@ export const routes = {
   },
   private: {
     accounts: createRoute(),
-    account: createRoute<{ accountId: string }>(),
+    profile: createRoute<{ profileId: string }>(),
   },
 }
 
@@ -28,8 +28,8 @@ export const mappedRoutes = [
     path: '/accounts',
   },
   {
-    route: routes.private.account,
-    path: '/accounts/:accountId',
+    route: routes.private.profile,
+    path: '/profile/:profileId',
   },
 ]
 

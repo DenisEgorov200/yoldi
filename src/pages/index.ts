@@ -1,7 +1,7 @@
 import { LayoutAuthn } from '@layouts/authn'
 import { LayoutBase } from '@layouts/base'
 import { createRoutesView } from 'atomic-router-react'
-import { AccountRoute } from './account'
+import { ProfileRoute } from './profile'
 import { AccountsRoute } from './accounts'
 import { SignInRoute } from './auth/sign-in'
 import { SignUpRoute } from './auth/sign-up'
@@ -24,8 +24,8 @@ export const Pages = createRoutesView({
       layout: LayoutBase,
     },
     {
-      route: AccountRoute.route,
-      view: AccountRoute.view,
+      route: ProfileRoute.route,
+      view: ProfileRoute.view,
       layout: LayoutBase,
     },
   ],
