@@ -32,7 +32,7 @@ export const Input = <T extends string>({
     <div className="group flex items-center gap-2.5 rounded border border-gray-200 px-5 py-3 focus:border-gray-400">
       {icon && <img src={icon} alt="icon" />}
       <input
-        className="w-full outline-none"
+        className="w-full text-paragraph outline-none"
         type={typeInput}
         onChange={handleChange}
         {...props}
