@@ -1,14 +1,21 @@
 import { tokenExpired } from '@shared/auth'
+import { useOnClickOutside } from '@shared/lib'
 import { AddresInput } from '@shared/ui/address-input'
 import { Button } from '@shared/ui/button'
 import { Input } from '@shared/ui/input'
 import { Modal } from '@shared/ui/modal'
 import { Textarea } from '@shared/ui/textarea'
 import { useUnit } from 'effector-react'
+import { useRef, useState } from 'react'
 import { $account } from '../model'
 
 export const Account = () => {
   const [account, handleTokenExpired] = useUnit([$account, tokenExpired])
+
+  const modalRef = useRef<HTMLDivElement>(null)
+  const [isOpenModal, setIsOpenModal] = useState(false)
+
+  useOnClickOutside(modalRef, () => setIsOpenModal(false))
 
   return (
     <>
@@ -35,7 +42,11 @@ export const Account = () => {
                 <p className="text-paragraph text-gray-400">{account?.email}</p>
               </div>
               <div>
-                <Button label="Редактировать" size="small" />
+                <Button
+                  label="Редактировать"
+                  size="small"
+                  onClick={() => setIsOpenModal(true)}
+                />
               </div>
             </div>
             <p className="max-w-[600px] text-paragraph">
@@ -47,47 +58,59 @@ export const Account = () => {
           </div>
         </>
       )}
-      <Modal className="w-full max-w-[600px] gap-6">
-        <h2 className="text-title font-medium">Редактировать профиль</h2>
-        <form action="" className="flex flex-col gap-3.5">
-          <div className="flex flex-col gap-1">
-            <label htmlFor="" className="text-button font-medium text-gray-400">
-              Имя
-            </label>
-            <Input type="text" onValue={() => console.log('hello')} />
-          </div>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="" className="text-button font-medium text-gray-400">
-              Адрес профиля
-            </label>
-            <AddresInput type="text" onValue={() => console.log('hello')} />
-          </div>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="" className="text-button font-medium text-gray-400">
-              Описание
-            </label>
-            <Textarea
-              name=""
-              id=""
-              value=""
-              defaultValue=""
-              onValue={() => console.log('hello')}
-            />
-          </div>
-          <div className="mt-6 flex items-center gap-2.5">
-            <Button
-              type="submit"
-              label="Отмена"
-              className="w-full border-gray-400"
-            />
-            <Button
-              type="submit"
-              label="Сохранить"
-              className="w-full bg-black text-white hover:bg-black/80"
-            />
-          </div>
-        </form>
-      </Modal>
+      {isOpenModal && (
+        <Modal modalRef={modalRef} className="w-full max-w-[600px] gap-6">
+          <h2 className="text-title font-medium">Редактировать профиль</h2>
+          <form action="" className="flex flex-col gap-3.5">
+            <div className="flex flex-col gap-1">
+              <label
+                htmlFor=""
+                className="text-button font-medium text-gray-400"
+              >
+                Имя
+              </label>
+              <Input type="text" onValue={() => console.log('hello')} />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label
+                htmlFor=""
+                className="text-button font-medium text-gray-400"
+              >
+                Адрес профиля
+              </label>
+              <AddresInput type="text" onValue={() => console.log('hello')} />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label
+                htmlFor=""
+                className="text-button font-medium text-gray-400"
+              >
+                Описание
+              </label>
+              <Textarea
+                name=""
+                id=""
+                value=""
+                defaultValue=""
+                onValue={() => console.log('hello')}
+              />
+            </div>
+            <div className="mt-6 flex items-center gap-2.5">
+              <Button
+                type="submit"
+                label="Отмена"
+                className="w-full border-gray-400"
+                onClick={() => setIsOpenModal(false)}
+              />
+              <Button
+                type="submit"
+                label="Сохранить"
+                className="w-full bg-black text-white hover:bg-black/80"
+              />
+            </div>
+          </form>
+        </Modal>
+      )}
     </>
   )
 }
