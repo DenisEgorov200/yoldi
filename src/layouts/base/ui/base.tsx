@@ -1,5 +1,4 @@
 import { $profile } from '@pages/profile/model'
-import { $token } from '@shared/auth'
 import { routes } from '@shared/config/routes'
 import { Link } from 'atomic-router-react'
 import { useUnit } from 'effector-react'
@@ -10,7 +9,7 @@ interface Props {
 }
 
 export const LayoutBase = ({ children }: Props) => {
-  const [profile, profileId] = useUnit([$profile, $token])
+  const [profile] = useUnit([$profile])
 
   return (
     <div className="flex h-dvh w-dvw flex-col">
@@ -23,20 +22,22 @@ export const LayoutBase = ({ children }: Props) => {
             Разрабатываем и запускаем сложные веб проекты
           </h1>
         </Link>
-        <Link
-          to={routes.private.profile}
-          params={{ profileId }}
-          className="flex items-center gap-5"
-        >
-          <p className="text-paragraph">{profile?.name}</p>
-          <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-gray-200 bg-gray-100 text-subtitle uppercase">
-            {profile?.image?.url ? (
-              <img src={profile.image.url} alt={profile.name} />
-            ) : (
-              profile?.name[0]
-            )}
-          </div>
-        </Link>
+        {profile && (
+          <Link
+            to={routes.private.profile}
+            params={{ profileId: profile!.slug.toString() }}
+            className="flex items-center gap-5"
+          >
+            <p className="text-paragraph">{profile?.name}</p>
+            <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-gray-200 bg-gray-100 text-subtitle uppercase">
+              {profile?.image?.url ? (
+                <img src={profile.image.url} alt={profile.name} />
+              ) : (
+                profile?.name[0]
+              )}
+            </div>
+          </Link>
+        )}
       </header>
       <main className="container mx-auto px-2.5">{children}</main>
     </div>

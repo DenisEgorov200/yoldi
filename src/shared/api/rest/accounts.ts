@@ -1,4 +1,4 @@
-import { createQuery } from '@farfetched/core'
+import { createMutation, createQuery } from '@farfetched/core'
 import { SITE_URL } from '@shared/config'
 import { createEffect } from 'effector'
 
@@ -44,3 +44,17 @@ export const currentProfileQuery = createEffect<string, Account, Error>(
     return response.json()
   },
 )
+
+export const currentProfileMutation = createMutation({
+  effect: createEffect<string, Account, Error>(async ({ body, slug }) => {
+    const response = await fetch(`${SITE_URL}/profile`, {
+      method: 'PATCH',
+      headers: {
+        'X-API-KEY': slug,
+      },
+      body: JSON.stringify(body),
+    })
+
+    return response.json()
+  }),
+})

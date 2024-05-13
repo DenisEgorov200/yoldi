@@ -1,4 +1,5 @@
-import { tokenExpired } from '@shared/auth'
+import { currentProfileMutation } from '@shared/api/rest/accounts'
+import { $token, tokenExpired } from '@shared/auth'
 import { useOnClickOutside } from '@shared/lib'
 import { AddresInput } from '@shared/ui/address-input'
 import { Button } from '@shared/ui/button'
@@ -7,10 +8,32 @@ import { Modal } from '@shared/ui/modal'
 import { Textarea } from '@shared/ui/textarea'
 import { useUnit } from 'effector-react'
 import { useRef, useState } from 'react'
-import { $profile } from '../model'
+import {
+  $address,
+  $description,
+  $name,
+  $profile,
+  addressChanged,
+  descriptionChanged,
+  nameChanged,
+} from '../model'
 
 export const Profile = () => {
+  const { start: changeProfile, pending } = useUnit(currentProfileMutation)
+
   const [profile, handleTokenExpired] = useUnit([$profile, tokenExpired])
+
+  const [name, address, description, profileId] = useUnit([
+    $name,
+    $address,
+    $description,
+    $token,
+  ])
+  const [handleName, handleAddress, handleDescription] = useUnit([
+    nameChanged,
+    addressChanged,
+    descriptionChanged,
+  ])
 
   const modalRef = useRef<HTMLDivElement>(null)
   const [isOpenModal, setIsOpenModal] = useState(false)
@@ -69,7 +92,7 @@ export const Profile = () => {
               >
                 Имя
               </label>
-              <Input type="text" onValue={() => console.log('hello')} />
+              <Input type="text" value={name} onValue={handleName} />
             </div>
             <div className="flex flex-col gap-1">
               <label
@@ -80,7 +103,8 @@ export const Profile = () => {
               </label>
               <AddresInput
                 type="text"
-                onValue={() => console.log('hello')}
+                value={address}
+                onValue={handleAddress}
                 label="example.com/profile/"
               />
             </div>
@@ -94,9 +118,8 @@ export const Profile = () => {
               <Textarea
                 name=""
                 id=""
-                value=""
-                defaultValue=""
-                onValue={() => console.log('hello')}
+                value={description}
+                onValue={handleDescription}
               />
             </div>
             <div className="mt-6 flex items-center gap-2.5">
@@ -110,6 +133,21 @@ export const Profile = () => {
                 type="submit"
                 label="Сохранить"
                 className="w-full bg-black text-white hover:bg-black/80"
+                disabled={pending}
+                onClick={(event) => {
+                  event.preventDefault()
+                  changeProfile({
+                    body: {
+                      name,
+                      slug: address,
+                      description,
+                      password: null,
+                      imageId: null,
+                      coverId: null,
+                    },
+                    slug: profileId,
+                  })
+                }}
               />
             </div>
           </form>
