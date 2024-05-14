@@ -7,7 +7,7 @@ import { Input } from '@shared/ui/input'
 import { Modal } from '@shared/ui/modal'
 import { Textarea } from '@shared/ui/textarea'
 import { useUnit } from 'effector-react'
-import { useRef, useState } from 'react'
+import { FormEvent, useRef, useState } from 'react'
 import {
   $address,
   $description,
@@ -40,25 +40,44 @@ export const Profile = () => {
 
   useOnClickOutside(modalRef, () => setIsOpenModal(false))
 
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    changeProfile({
+      body: {
+        name,
+        slug: address,
+        description,
+        password: null,
+        imageId: null,
+        coverId: null,
+      },
+      slug: profileId,
+    })
+
+    setIsOpenModal(false)
+  }
+
   return (
     <>
       {profile && (
         <>
-          <div className="group absolute right-0 flex h-[20dvh] w-dvw items-center justify-center bg-gray-100">
-            <Button
-              label="Загрузить"
-              size="small"
-              className="relative z-30 bg-white opacity-0 transition-opacity group-hover:opacity-100"
-            />
-          </div>
-          <div className="relative z-10 mt-[15dvh] flex flex-col justify-start">
-            <div className="mb-8 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-gray-200 bg-gray-100 text-subtitle uppercase">
-              {profile.image?.url ? (
-                <img src={profile.image.url} alt={profile.name} />
-              ) : (
-                profile.name[0]
-              )}
+          <div className="group ml-[calc(50%-50dvw)] h-[20dvh] w-dvw bg-gray-100">
+            <div className="container relative mx-auto flex h-full w-full items-center justify-center">
+              <Button
+                label="Загрузить"
+                size="small"
+                className="relative z-30 bg-white opacity-0 transition-opacity group-hover:opacity-100"
+              />
+              <div className="absolute -bottom-[48px] left-0 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-gray-200 bg-gray-100 text-subtitle uppercase">
+                {profile.image?.url ? (
+                  <img src={profile.image.url} alt={profile.name} />
+                ) : (
+                  profile.name[0]
+                )}
+              </div>
             </div>
+          </div>
+          <div className="flex flex-col justify-start pt-20">
             <div className="mb-7 flex justify-between">
               <div className="flex flex-col gap-2.5 align-top">
                 <h1 className="text-title font-medium">{profile?.name}</h1>
@@ -73,9 +92,9 @@ export const Profile = () => {
               </div>
             </div>
             <p className="max-w-[600px] text-paragraph">
-              {profile?.description}
+              {profile.description}
             </p>
-            <div className={`${profile?.description && 'mt-14'}`}>
+            <div className={`${profile.description && 'mt-14'}`}>
               <Button label="Выйти" size="small" onClick={handleTokenExpired} />
             </div>
           </div>
@@ -87,20 +106,7 @@ export const Profile = () => {
           <form
             action=""
             className="flex flex-col gap-3.5"
-            onSubmit={(event) => {
-              event.preventDefault()
-              changeProfile({
-                body: {
-                  name,
-                  slug: address,
-                  description: null,
-                  password: null,
-                  imageId: null,
-                  coverId: null,
-                },
-                slug: profileId,
-              })
-            }}
+            onSubmit={handleSubmit}
           >
             <div className="flex flex-col gap-1">
               <label
