@@ -1,15 +1,17 @@
-import { startChain } from '@farfetched/atomic-router'
-import { currentProfileQuery } from '@shared/api/rest/accounts'
+import {
+  currentProfileMutation,
+  currentProfileQuery,
+} from '@shared/api/rest/accounts'
 import { $token } from '@shared/auth'
 import { routes } from '@shared/config/routes'
 import { chainRoute } from 'atomic-router'
-import { attach, createEvent, createStore, restore } from 'effector'
+import { attach, createEvent, createStore, restore, sample } from 'effector'
 
 export const currentRoute = routes.private.profile
 
 const currentProfileFx = attach({
-  source: $token,
   effect: currentProfileQuery,
+  source: $token,
   mapParams: (_, token) => token,
 })
 
@@ -34,3 +36,9 @@ export const $description = createStore('')
 $name.on(nameChanged, (_, name) => name)
 $address.on(addressChanged, (_, addess) => addess)
 $description.on(descriptionChanged, (_, description) => description)
+
+sample({
+  clock: currentProfileMutation.$finished,
+  sourse: $token,
+  target: currentProfileFx,
+})

@@ -50,6 +50,7 @@ export const currentProfileMutation = createMutation({
     const response = await fetch(`${SITE_URL}/profile`, {
       method: 'PATCH',
       headers: {
+        'Content-Type': 'application/json',
         'X-API-KEY': slug,
       },
       body: JSON.stringify(body),

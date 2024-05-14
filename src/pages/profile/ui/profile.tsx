@@ -84,7 +84,24 @@ export const Profile = () => {
       {isOpenModal && (
         <Modal modalRef={modalRef} className="w-full max-w-[600px] gap-6">
           <h2 className="text-title font-medium">Редактировать профиль</h2>
-          <form action="" className="flex flex-col gap-3.5">
+          <form
+            action=""
+            className="flex flex-col gap-3.5"
+            onSubmit={(event) => {
+              event.preventDefault()
+              changeProfile({
+                body: {
+                  name,
+                  slug: address,
+                  description: null,
+                  password: null,
+                  imageId: null,
+                  coverId: null,
+                },
+                slug: profileId,
+              })
+            }}
+          >
             <div className="flex flex-col gap-1">
               <label
                 htmlFor=""
@@ -134,20 +151,6 @@ export const Profile = () => {
                 label="Сохранить"
                 className="w-full bg-black text-white hover:bg-black/80"
                 disabled={pending}
-                onClick={(event) => {
-                  event.preventDefault()
-                  changeProfile({
-                    body: {
-                      name,
-                      slug: address,
-                      description,
-                      password: null,
-                      imageId: null,
-                      coverId: null,
-                    },
-                    slug: profileId,
-                  })
-                }}
               />
             </div>
           </form>
