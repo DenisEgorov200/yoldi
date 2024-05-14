@@ -62,13 +62,13 @@ export const Profile = () => {
       {profile && (
         <>
           <div className="group ml-[calc(50%-50dvw)] h-[20dvh] w-dvw bg-gray-100">
-            <div className="container relative mx-auto flex h-full w-full items-center justify-center">
+            <div className="container relative mx-auto flex h-full w-full items-center justify-center px-2.5">
               <Button
                 label="Загрузить"
                 size="small"
                 className="relative z-30 bg-white opacity-0 transition-opacity group-hover:opacity-100"
               />
-              <div className="absolute -bottom-[48px] left-0 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-gray-200 bg-gray-100 text-subtitle uppercase">
+              <div className="absolute -bottom-[48px] left-2.5 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-gray-200 bg-gray-100 text-subtitle uppercase">
                 {profile.image?.url ? (
                   <img src={profile.image.url} alt={profile.name} />
                 ) : (
@@ -78,7 +78,7 @@ export const Profile = () => {
             </div>
           </div>
           <div className="flex flex-col justify-start pt-20">
-            <div className="mb-7 flex justify-between">
+            <div className="mb-7 flex justify-between gap-2.5 max-sm:flex-col">
               <div className="flex flex-col gap-2.5 align-top">
                 <h1 className="text-title font-medium">{profile?.name}</h1>
                 <p className="text-paragraph text-gray-400">{profile?.email}</p>
