@@ -35,6 +35,8 @@ export const Profile = () => {
     descriptionChanged,
   ])
 
+  const uploadRef = useRef<HTMLInputElement>(null)
+
   const modalRef = useRef<HTMLDivElement>(null)
   const [isOpenModal, setIsOpenModal] = useState(false)
 
@@ -64,9 +66,19 @@ export const Profile = () => {
           <div className="group ml-[calc(50%-50dvw)] h-[20dvh] w-dvw bg-gray-100">
             <div className="container relative mx-auto flex h-full w-full items-center justify-center px-2.5">
               <Button
-                label="Загрузить"
+                label={
+                  <>
+                    Загрузить{' '}
+                    <input
+                      ref={uploadRef}
+                      type="file"
+                      className="absolute left-0 top-0 -z-10 hidden"
+                    />
+                  </>
+                }
                 size="small"
                 className="relative z-30 bg-white opacity-0 transition-opacity group-hover:opacity-100"
+                onClick={() => uploadRef.current!.click()}
               />
               <div className="absolute -bottom-[48px] left-2.5 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-gray-200 bg-gray-100 text-subtitle uppercase">
                 {profile.image?.url ? (
@@ -80,8 +92,8 @@ export const Profile = () => {
           <div className="flex flex-col justify-start pt-20">
             <div className="mb-7 flex justify-between gap-2.5 max-sm:flex-col">
               <div className="flex flex-col gap-2.5 align-top">
-                <h1 className="text-title font-medium">{profile?.name}</h1>
-                <p className="text-paragraph text-gray-400">{profile?.email}</p>
+                <h1 className="text-title font-medium">{profile.name}</h1>
+                <p className="text-paragraph text-gray-400">{profile.email}</p>
               </div>
               <div>
                 <Button
