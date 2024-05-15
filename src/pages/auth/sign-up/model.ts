@@ -1,4 +1,4 @@
-import { signUpWithEmailMutation } from '@shared/api/rest/auth'
+import { api } from '@shared/api'
 import { tokenRecieved } from '@shared/auth'
 import { routes } from '@shared/config/routes'
 import { redirect } from 'atomic-router'
@@ -23,17 +23,17 @@ $email.on(emailChanged, (_, email) => email)
 $password.on(passwordChanged, (_, password) => password)
 
 sample({
-  clock: signUpWithEmailMutation.finished.success,
+  clock: api.auth.signUpWithEmailMutation.finished.success,
   fn: ({ result }) => result.value,
   target: tokenRecieved,
 })
 
 redirect({
-  clock: signUpWithEmailMutation.finished.success,
+  clock: api.auth.signUpWithEmailMutation.finished.success,
   route: routes.auth.signIn,
 })
 
 sample({
-  clock: signUpWithEmailMutation.finished.success,
+  clock: api.auth.signUpWithEmailMutation.finished.success,
   target: showErrorAlertFx,
 })

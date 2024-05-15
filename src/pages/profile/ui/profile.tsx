@@ -101,11 +101,14 @@ export const Profile = () => {
         </>
       )}
       {isOpenModal && (
-        <Modal modalRef={modalRef} className="w-full max-w-[600px] gap-6">
+        <Modal
+          modalRef={modalRef}
+          className="w-full max-w-[600px] gap-6 max-sm:h-full"
+        >
           <h2 className="text-title font-medium">Редактировать профиль</h2>
           <form
             action=""
-            className="flex flex-col gap-3.5"
+            className="flex h-full flex-col gap-3.5"
             onSubmit={handleSubmit}
           >
             <div className="flex flex-col gap-1">
@@ -128,7 +131,7 @@ export const Profile = () => {
                 type="text"
                 value={address}
                 onValue={handleAddress}
-                label="example.com/profile/"
+                label="example.com/"
               />
             </div>
             <div className="flex flex-col gap-1">
@@ -141,11 +144,12 @@ export const Profile = () => {
               <Textarea
                 name=""
                 id=""
+                className="min-h-36 resize-none"
                 value={description}
                 onValue={handleDescription}
               />
             </div>
-            <div className="mt-6 flex items-center gap-2.5">
+            <div className="mt-auto flex items-center gap-2.5">
               <Button
                 type="submit"
                 label="Отмена"

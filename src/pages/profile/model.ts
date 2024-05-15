@@ -1,7 +1,4 @@
-import {
-  currentProfileMutation,
-  currentProfileQuery,
-} from '@shared/api/rest/accounts'
+import { api } from '@shared/api'
 import { $token } from '@shared/auth'
 import { routes } from '@shared/config/routes'
 import { chainRoute } from 'atomic-router'
@@ -10,7 +7,7 @@ import { attach, createEvent, createStore, restore, sample } from 'effector'
 export const currentRoute = routes.private.profile
 
 const currentProfileFx = attach({
-  effect: currentProfileQuery,
+  effect: api.accounts.currentProfileQuery,
   source: $token,
   mapParams: (_, token) => token,
 })
@@ -23,7 +20,7 @@ chainRoute({
   },
 })
 
-export const $profile = restore(currentProfileQuery.doneData, null)
+export const $profile = restore(api.accounts.currentProfileQuery.doneData, null)
 
 export const nameChanged = createEvent<string>()
 export const addressChanged = createEvent<string>()
@@ -38,7 +35,7 @@ $address.on(addressChanged, (_, addess) => addess)
 $description.on(descriptionChanged, (_, description) => description)
 
 sample({
-  clock: currentProfileMutation.$finished,
+  clock: api.accounts.currentProfileMutation.$finished,
   sourse: $token,
   target: currentProfileFx,
 })

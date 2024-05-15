@@ -33,6 +33,7 @@ export const accountsQuery = createQuery({
   }),
 })
 
+// TODO: change effect to query in ff
 export const currentProfileQuery = createEffect<string, Account, Error>(
   async (slug) => {
     const response = await fetch(`${SITE_URL}/profile`, {

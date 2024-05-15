@@ -1,4 +1,3 @@
-import { LayoutAuthn } from '@layouts/authn'
 import { signUpWithEmailMutation } from '@shared/api/rest/auth'
 import { Button } from '@shared/ui/button'
 import { Input } from '@shared/ui/input'
